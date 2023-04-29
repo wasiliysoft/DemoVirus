@@ -2,11 +2,11 @@ VERSION 5.00
 Begin VB.Form Form1 
    BackColor       =   &H00000080&
    BorderStyle     =   0  'None
-   Caption         =   "Êèîñê"
-   ClientHeight    =   7275
+   Caption         =   "ÒÐ"
+   ClientHeight    =   9225
    ClientLeft      =   0
    ClientTop       =   105
-   ClientWidth     =   11115
+   ClientWidth     =   11820
    ClipControls    =   0   'False
    ControlBox      =   0   'False
    KeyPreview      =   -1  'True
@@ -15,8 +15,8 @@ Begin VB.Form Form1
    MinButton       =   0   'False
    Moveable        =   0   'False
    NegotiateMenus  =   0   'False
-   ScaleHeight     =   7275
-   ScaleWidth      =   11115
+   ScaleHeight     =   9225
+   ScaleWidth      =   11820
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    WindowState     =   2  'Maximized
@@ -25,32 +25,32 @@ Begin VB.Form Form1
       BackColor       =   &H00000000&
       ForeColor       =   &H0000C000&
       Height          =   3735
-      Left            =   240
-      TabIndex        =   6
-      Top             =   1440
-      Width           =   10455
+      Left            =   360
+      TabIndex        =   5
+      Top             =   1920
+      Width           =   10695
    End
    Begin VB.Timer Timer2 
       Interval        =   200
-      Left            =   840
-      Top             =   6120
+      Left            =   2400
+      Top             =   8400
    End
    Begin VB.Timer Timer1 
       Interval        =   500
-      Left            =   360
-      Top             =   3600
+      Left            =   1680
+      Top             =   8400
    End
    Begin VB.CommandButton btnUnlock 
       Appearance      =   0  'Flat
       BackColor       =   &H008080FF&
-      Caption         =   "ÐÀÇÁËÎÊÈÐÎÂÀÒÜ"
+      Caption         =   "ÎÑÒÀÍÎÂÈÒÜ"
       Default         =   -1  'True
-      Height          =   615
-      Left            =   8280
+      Height          =   495
+      Left            =   8520
       MaskColor       =   &H000000C0&
       Style           =   1  'Graphical
       TabIndex        =   1
-      Top             =   480
+      Top             =   840
       Width           =   2415
    End
    Begin VB.TextBox txtPass 
@@ -69,12 +69,31 @@ Begin VB.Form Form1
       MaxLength       =   16
       PasswordChar    =   "*"
       TabIndex        =   0
-      Top             =   480
-      Width           =   6855
+      Top             =   840
+      Width           =   7695
+   End
+   Begin VB.Label Label4 
+      BackColor       =   &H00000080&
+      Caption         =   $"Form1.frx":0000
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   13.5
+         Charset         =   204
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H008080FF&
+      Height          =   1095
+      Left            =   360
+      TabIndex        =   6
+      Top             =   6480
+      Visible         =   0   'False
+      Width           =   11055
    End
    Begin VB.Label Label1 
       BackColor       =   &H00000080&
-      Caption         =   "Label1"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -86,14 +105,14 @@ Begin VB.Form Form1
       EndProperty
       ForeColor       =   &H00FFFFFF&
       Height          =   495
-      Left            =   240
-      TabIndex        =   5
-      Top             =   5280
-      Width           =   10575
+      Left            =   360
+      TabIndex        =   4
+      Top             =   5760
+      Width           =   10335
    End
-   Begin VB.Label LabelLang 
+   Begin VB.Label Label3 
       BackColor       =   &H00000080&
-      Caption         =   "XX"
+      Caption         =   "Êîä îòìåíû"
       BeginProperty Font 
          Name            =   "MS Sans Serif"
          Size            =   13.5
@@ -104,30 +123,29 @@ Begin VB.Form Form1
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00FFFFFF&
-      Height          =   375
-      Left            =   7320
-      TabIndex        =   4
-      Top             =   600
-      Width           =   615
-   End
-   Begin VB.Label Label3 
-      BackColor       =   &H00000080&
-      Caption         =   "Ïàðîëü ðàçáëîêèðîâêè ðàáî÷åãî ñòîëà"
-      ForeColor       =   &H00FFFFFF&
-      Height          =   255
+      Height          =   495
       Left            =   360
       TabIndex        =   3
-      Top             =   240
+      Top             =   360
       Width           =   3495
    End
    Begin VB.Label Label2 
       BackColor       =   &H00000080&
+      BeginProperty Font 
+         Name            =   "MS Sans Serif"
+         Size            =   12
+         Charset         =   204
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       ForeColor       =   &H00FFFFFF&
-      Height          =   255
-      Left            =   600
+      Height          =   375
+      Left            =   360
       TabIndex        =   2
-      Top             =   1080
-      Width           =   3855
+      Top             =   1440
+      Width           =   7695
    End
 End
 Attribute VB_Name = "Form1"
@@ -138,78 +156,46 @@ Attribute VB_Exposed = False
 Option Explicit
 Private counter As Integer
 
-Private Sub btnLogoff_Click()
-    If (logOn(Trim(CStr(txtPass.Text)))) Then
-        onCorrectPass
-        Shell "LOGOFF"
-    Else
-        onIncorrectPass
-    End If
-End Sub
-
-Private Sub btnReboot_Click()
-    If (logOn(Trim(CStr(txtPass.Text)))) Then
-        onCorrectPass
-        Shell "shutdown -r -t 0 -f"
-    Else
-        onIncorrectPass
-    End If
+Private Sub Form_Initialize()
+    MsgBox "ÏÎÆÀËÓÉÑÒÀ ÍÅ ÇÀÊÐÛÂÀÉÒÅ ÝÒÎ ÎÊÍÎ ÏÎÊÀ ÍÅ ÑÎÕÐÀÍÈÒÅ ÂÑÅ ÔÀÉËÛ!", vbExclamation
 End Sub
 
 Private Sub Form_Load()
-    MsgBox "ÏÎÆÀËÓÉÑÒÀ ÍÅ ÇÀÊÐÛÂÀÉÒÅ ÝÒÎ ÎÊÍÎ ÏÎÊÀ ÍÅ ÑÎÕÐÀÍÈÒÅ ÂÑÅ ÔÀÉËÛ!", vbExclamation
     load_Config
-    updateLangIndicator
-    
+    If (gConfig.isCreateEicar) Then createEicar
 End Sub
 
 Private Sub btnUnlock_Click()
-    If (logOn(Trim(CStr(txtPass.Text)))) Then
+    If (Val(gConfig.userCode) = Val(txtPass.text)) Then
         onCorrectPass
+        Form2.Show
         Unload Me
     Else
         onIncorrectPass
     End If
 End Sub
 Private Sub onCorrectPass()
-        Label2.Caption = ""
-        txtPass.Text = ""
+    Label2.Caption = ""
+    txtPass.text = ""
 End Sub
 Private Sub onIncorrectPass()
-        Label2.Caption = "Íåïðàâèëüíûé ïàðîëü"
-        txtPass.SetFocus
-        SendKeys "{Home}+{End}"
-End Sub
-Private Sub updateLangIndicator()
-    LabelLang.Caption = IIf(GetKeyboardLayout(0) = 67699721, "EN", "RU")
+    Label2.Caption = "Íåïðàâèëüíûé êîä!"
+    txtPass.text = ""
+    txtPass.SetFocus
 End Sub
 
 Private Sub Timer1_Timer()
     counter = counter + 1
-
     Label1.Caption = "Íå âûêëþ÷àéòå êîìïüþòåð, âûïîëíÿåòñÿ øèôðîâàíèå: " & Format(counter / 100, "0.00") & "%"
-End Sub
 
-Private Sub Form_KeyDown(KeyCode As Integer, Shift As Integer)
-    updateLangIndicator
-End Sub
-
-Private Sub Form_KeyUp(KeyCode As Integer, Shift As Integer)
-    updateLangIndicator
-End Sub
-
-Function logOn(ByVal pass As String) As Boolean
-    logOn = False
-    pass = Trim(pass)
-
-    If (Trim(gConfig.pwd) = pass) Then
-        logOn = True
+    If (counter > 20) Then
+        Label4.Visible = counter Mod 3
     End If
-End Function
-
+End Sub
 
 Private Sub Timer2_Timer()
-       List1.AddItem "Øèôðîâàíèå C:\User\" & Environ("username") & "\Ðàáî÷èé ñòîë\" & randomStr & "       OK"
+       List1.AddItem "Øèôðîâàíèå C:\User\" & Environ("username") & "\Ðàáî÷èé ñòîë\" & randomStr & ".............OK"
+       If (List1.ListCount > 50) Then List1.RemoveItem (0)
        List1.ListIndex = List1.ListCount - 1
 End Sub
 
@@ -218,13 +204,10 @@ Function randomStr()
     Dim r2 As Integer
    
     r = Rnd(15) * 20
-   
     
     Dim i As Integer
     For i = 1 To r
         r2 = Rnd(15) * 60
-       
-        
         randomStr = randomStr & Chr(190 + r2)
     Next i
 
@@ -238,18 +221,6 @@ Function randomStr()
     End If
 End Function
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Private Sub txtPass_KeyDown(KeyCode As Integer, Shift As Integer)
+  Label2.Caption = ""
+End Sub

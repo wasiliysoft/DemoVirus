@@ -1,12 +1,13 @@
 Type=Exe
 Form=Form1.frm
-Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#..\..\..\..\WINDOWS\system32\stdole2.tlb#OLE Automation
 Module=Module2; Module2.bas
+Module=Module1; Module1.bas
+Form=Form2.frm
 IconForm="Form1"
 Startup="Form1"
 HelpFile=""
 Title="¬Õ»Ã¿Õ»≈"
-ExeName32="kiosk.exe"
+ExeName32="DemoVirus.exe"
 Command32=""
 Name="DemoVirus"
 HelpContextID="0"
