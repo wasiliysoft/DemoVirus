@@ -199,7 +199,7 @@ Private Sub Timer1_Timer()
     counter = counter + 1
     Label1.Caption = "Не выключайте компьютер, выполняется шифрование: " & Format(counter / 100, "0.00") & "%"
 
-    If (counter > 20) Then
+    If (counter > 10) Then
         Label4.Visible = counter Mod 3
     End If
 End Sub
