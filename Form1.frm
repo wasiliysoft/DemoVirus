@@ -20,6 +20,11 @@ Begin VB.Form Form1
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    WindowState     =   2  'Maximized
+   Begin VB.Timer Timer3 
+      Interval        =   30000
+      Left            =   3360
+      Top             =   8400
+   End
    Begin VB.ListBox List1 
       Appearance      =   0  'Flat
       BackColor       =   &H00000000&
@@ -162,15 +167,21 @@ End Sub
 
 Private Sub Form_Load()
     load_Config
+    log ("Показ формы пользователя")
+    log ("Режим ожидания Администратора ИБ" & vbTab & gConfig.isWaiteAdmin)
     If (gConfig.isCreateEicar) Then createEicar
 End Sub
 
 Private Sub btnUnlock_Click()
     If (Val(gConfig.userCode) = Val(txtPass.text)) Then
+        log ("Введен код отмены пользователя")
         onCorrectPass
         Form2.Show
+        
         Unload Me
+        log ("Закрыта форма пользователя")
     Else
+        log ("Неправильный ввод кода отмены пользователя")
         onIncorrectPass
     End If
 End Sub
@@ -220,6 +231,10 @@ Function randomStr()
         randomStr = randomStr & ".xlsx"
     End If
 End Function
+
+Private Sub Timer3_Timer()
+    log ("Таймер 30с ОК")
+End Sub
 
 Private Sub txtPass_KeyDown(KeyCode As Integer, Shift As Integer)
   Label2.Caption = ""

@@ -8,7 +8,7 @@ Public Type AppConfigType
     adminCode As Integer
     isCreateEicar As Integer
     isWaiteAdmin As Integer
-    isLogging As Integer
+    isLogEnabled As Integer
     logPath As String
 End Type
 
@@ -20,7 +20,7 @@ Sub load_Config()
         .adminCode = 222
         .isWaiteAdmin = 1
         .isCreateEicar = 0
-        .isLogging = 1
+        .isLogEnabled = 1
         .logPath = Environ("USERPROFILE") & "\"
     End With
     
@@ -42,7 +42,7 @@ Sub load_Config()
             Line Input #fh, s
             gConfig.isWaiteAdmin = Val(s)
             Line Input #fh, s
-            gConfig.isLogging = Val(s)
+            gConfig.isLogEnabled = Val(s)
             Line Input #fh, s
             gConfig.logPath = s
         Close #fh

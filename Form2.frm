@@ -153,6 +153,8 @@ Attribute VB_Exposed = False
 Option Explicit
 
 Private Sub Form_Load()
+    log ("Показ формы Администратора ИБ")
+    
     Dim s As String: s = App.Path + "\notes.txt"
     
     Dim fh As Long: fh = FreeFile
@@ -172,15 +174,23 @@ Private Sub Form_Load()
     End If
 End Sub
 
+Private Sub Form_Terminate()
+    log ("Закрыта форма Администратора ИБ")
+End Sub
+
+
+
 Private Sub txtPass_KeyDown(KeyCode As Integer, Shift As Integer)
     Label2.Caption = ""
 End Sub
 
 Private Sub unlockBtn_Click()
     If (Val(gConfig.adminCode) = Val(txtPass.text)) Then
+        log ("Введен код отмены Администратора ИБ")
         onCorrectPass
         Unload Me
     Else
+        log ("Неправильный ввод кода отмены Администратора ИБ")
         onIncorrectPass
     End If
 End Sub

@@ -1,0 +1,444 @@
+{
+	// DATA TYPES ===================================================
+	/*
+	  Boolean
+	  Long
+	  Double
+	  String
+	  Object
+	  Array
+	  */
+	"Boolean": {
+	  "prefix": "DimBoolean",
+	  "body": [
+		"Dim bol$1 As Boolean"
+	  ],
+	  "description": "Boolean declaration"
+	},
+	"Long": {
+	  "prefix": "DimLong",
+	  "body": [
+		"Dim lng$1 As Long"
+	  ],
+	  "description": "Long declaration"
+	},
+	"Double": {
+	  "prefix": "DimDouble",
+	  "body": [
+		"Dim dbl$1 As Double"
+	  ],
+	  "description": "Double declaration"
+	},
+	"String": {
+	  "prefix": "DimString",
+	  "body": [
+		"Dim str$1 As String"
+	  ],
+	  "description": "String declaration"
+	},
+	"Object": {
+	  "prefix": "DimObject",
+	  "body": [
+		"Dim obj$1 As Object"
+	  ],
+	  "description": "Object declaration"
+	},
+	"Array": {
+	  "prefix": "DimArray",
+	  "body": [
+		"Dim arr$1"
+	  ],
+	  "description": "Array declaration"
+	},
+	"Private": {
+	  "prefix": "Private",
+	  "body": [
+		"Private "
+	  ],
+	  "description": "Private declaration"
+	},
+	"Public": {
+	  "prefix": "Public",
+	  "body": [
+		"Public "
+	  ],
+	  "description": "Public declaration"
+	},
+	// If Else ===================================================
+	"If": {
+	  "prefix": "If",
+	  "body": [
+		"If ${1:condition} Then",
+		"\t$2",
+		"End If"
+	  ],
+	  "description": "If code block"
+	},
+	"ElseIf": {
+	  "prefix": "ElseIf",
+	  "body": [
+		"ElseIf ${1:condition2} Then",
+		"\t$0"
+	  ],
+	  "description": "ElseIf"
+	},
+	"Else": {
+	  "prefix": "Else",
+	  "body": [
+		"Else",
+		"\t$0"
+	  ],
+	  "description": "Else"
+	},
+	// With ===================================================
+	"With": {
+	  "prefix": "With",
+	  "body": [
+		"With $1",
+		"\t$2",
+		"End With"
+	  ],
+	  "description": "With code block"
+	},
+	// Loops ===================================================
+	"For Loop": {
+	  "prefix": "for",
+	  "body": [
+		"For ${1:i} = ${3:lb} To ${4:ub} Step ${5:1}",
+		"\t$0",
+		"Next ${1:i}"
+	  ],
+	  "description": "For Next Loop"
+	},
+	"ForEach": {
+	  "prefix": "ForEach",
+	  "body": [
+		"For Each ${1:variable} In ${2:collection}",
+		"\t$0",
+		"Next ${1:variable}"
+	  ],
+	  "description": "For Each"
+	},
+	"DoLoopWhile": {
+	  "prefix": "DoLoopWhile",
+	  "body": [
+		"Do",
+		"\t$0",
+		"Loop While ${1:condition}"
+	  ],
+	  "description": "Do Loop While code block"
+	},
+	"DoWhile": {
+	  "prefix": "DoWhile",
+	  "body": [
+		"Do While ${1:condition}",
+		"\t$0",
+		"Loop"
+	  ],
+	  "description": "Do While Loop code block"
+	},
+	"While": {
+	  "prefix": "While",
+	  "body": [
+		"While ${1:condition}",
+		"\t$0",
+		"Wend"
+	  ],
+	  "description": "While Wend code block"
+	},
+	// Sub Function ===================================================
+	"Sub": {
+	  "prefix": "Sub",
+	  "body": [
+		"Sub ${1:func}(${2:input})",
+		"'",
+		"' ${3:description}.",
+		"'",
+		"' @since ${4:1.0.0}",
+		"' @param {${5:type}} [${6:name}] ${7:description}.",
+		"' @return {${8:type}} [${9:name}] ${10:description}.",
+		"' @see ${11:dependencies}",
+		"'",
+		"",
+		"\t$0",
+		"",
+		"End Sub"
+	  ],
+	  "description": "Sub code block"
+	},
+	"Function": {
+	  "prefix": "Function",
+	  "body": [
+		"Function ${1:func}(ByVal ${2:input})",
+		"'",
+		"' ${3:description}.",
+		"'",
+		"' @since ${4:1.0.0}",
+		"' @param {${5:type}} [${6:name}] ${7:description}.",
+		"' @return {${8:type}} [${9:name}] ${10:description}.",
+		"' @see ${11:dependencies}",
+		"'",
+		"",
+		"\t$0",
+		"",
+		"End Function"
+	  ],
+	  "description": "Function code block"
+	},
+	"SelectCase": {
+	  "prefix": "SelectCase",
+	  "body": [
+		"Select Case ${1:test}",
+		"",
+		"\tCase ${2:lists}",
+		"",
+		"\t\t${3:statements}",
+		"",
+		"\tCase Else",
+		"",
+		"\t\t${0:elseStatement}",
+		"",
+		"End Select"
+	  ],
+	  "description": "Select Case code block"
+	},
+	"MsgBox": {
+	  "prefix": "MsgBox",
+	  "body": [
+		"MsgBox \"${1:message}\", ${2:buttonType}, \"${3:title}\""
+	  ],
+	  "description": "Message box code block"
+	},
+	// short snippets
+	"UBound": {
+	  "prefix": "UBound",
+	  "body": [
+		"UBound($1)"
+	  ],
+	  "description": "UBound"
+	},
+	"LBound": {
+	  "prefix": "LBound",
+	  "body": [
+		"LBound($1)"
+	  ],
+	  "description": "LBound"
+	},
+	"To": {
+	  "prefix": "To",
+	  "body": [
+		"To"
+	  ],
+	  "description": "To"
+	},
+	"Cells": {
+	  "prefix": "Cells",
+	  "body": [
+		"Cells($1)"
+	  ],
+	  "description": "Cells"
+	},
+	"Range": {
+	  "prefix": "Range",
+	  "body": [
+		".Range(.Cells($1), .Cells($2))"
+	  ],
+	  "description": "Range"
+	},
+	"Worksheets": {
+	  "prefix": "Worksheets",
+	  "body": [
+		"Worksheets(\"$1\")"
+	  ],
+	  "description": "Worksheets"
+	},
+	"Fix": {
+	  "prefix": "Fix",
+	  "body": [
+		"Fix($1)"
+	  ],
+	  "description": "Fix"
+	},
+	"Int": {
+	  "prefix": "Int",
+	  "body": [
+		"Int($1)"
+	  ],
+	  "description": "Int"
+	},
+	"ReDim": {
+	  "prefix": "ReDim",
+	  "body": [
+		"ReDim"
+	  ],
+	  "description": "ReDim"
+	},
+	"Set": {
+	  "prefix": "Set",
+	  "body": [
+		"Set"
+	  ],
+	  "description": "Set"
+	},
+	"Call": {
+	  "prefix": "Call",
+	  "body": [
+		"Call"
+	  ],
+	  "description": "Call"
+	},
+	"Preserve": {
+	  "prefix": "Preserve",
+	  "body": [
+		"Preserve"
+	  ],
+	  "description": "Preserve"
+	},
+	"Split": {
+	  "prefix": "Split",
+	  "body": [
+		"Split(${1:string}, \"${2:delimiter}\")"
+	  ],
+	  "description": "Split"
+	},
+	"Option Explicit": {
+	  "prefix": "Option",
+	  "body": [
+		"Option Explicit"
+	  ],
+	  "description": "Option Explicit"
+	},
+	"On Error Resume Next": {
+	  "prefix": "OnError",
+	  "body": [
+		"On Error Resume Next"
+	  ],
+	  "description": "On Error Resume Next"
+	},
+	"ClearContents": {
+	  "prefix": "ClearContents",
+	  "body": [
+		"ClearContents"
+	  ],
+	  "description": "ClearContents"
+	},
+	"Clear": {
+	  "prefix": "Clear",
+	  "body": [
+		"Clear"
+	  ],
+	  "description": "Clear"
+	},
+	"Columns": {
+	  "prefix": "Columns",
+	  "body": [
+		"Columns"
+	  ],
+	  "description": "Columns"
+	},
+	"Rows": {
+	  "prefix": "Rows",
+	  "body": [
+		"Rows"
+	  ],
+	  "description": "Rows"
+	},
+	"CreateObject": {
+	  "prefix": "CreateObject",
+	  "body": [
+		"CreateObject"
+	  ],
+	  "description": "CreateObject"
+	},
+	"IsEmpty": {
+	  "prefix": "IsEmpty",
+	  "body": [
+		"IsEmpty($1)"
+	  ],
+	  "description": "IsEmpty"
+	},
+	"comment block": {
+	  "prefix": "cm",
+	  "body": [
+		"'",
+		"' description.",
+		"'",
+		"' @since 1.0.0",
+		"' @param {type} [name] description.",
+		"' @return {type} [name] description.",
+		"' @see dependencies",
+		"'"
+	  ],
+	  "description": "comment block"
+	},
+	"End": {
+	  "prefix": "End",
+	  "body": [
+		"End"
+	  ],
+	  "description": "End"
+	},
+	"Right": {
+	  "prefix": "Right",
+	  "body": [
+		"Right($1)"
+	  ],
+	  "description": "Right"
+	},
+	"Left": {
+	  "prefix": "Left",
+	  "body": [
+		"Left($1)"
+	  ],
+	  "description": "Left"
+	},
+	"Len": {
+	  "prefix": "Len",
+	  "body": [
+		"Len($1)"
+	  ],
+	  "description": "Len"
+	},
+	"Item": {
+	  "prefix": "Item",
+	  "body": [
+		"Item($1)"
+	  ],
+	  "description": "Item"
+	},
+	"Max": {
+	  "prefix": "Max",
+	  "body": [
+		"Max($1)"
+	  ],
+	  "description": "Max"
+	},
+	"Min": {
+	  "prefix": "Min",
+	  "body": [
+		"Min($1)"
+	  ],
+	  "description": "Min"
+	},
+	"Round": {
+	  "prefix": "Round",
+	  "body": [
+		"Round($1)"
+	  ],
+	  "description": "Round"
+	},
+	"RoundUp": {
+	  "prefix": "RoundUp",
+	  "body": [
+		"RoundUp($1)"
+	  ],
+	  "description": "RoundUp"
+	},
+	"Sqr": {
+	  "prefix": "Sqr",
+	  "body": [
+		"Sqr($1)"
+	  ],
+	  "description": "Sqr"
+	},
+  }
