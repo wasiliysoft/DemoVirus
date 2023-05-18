@@ -174,14 +174,14 @@ End Sub
 
 Private Sub btnUnlock_Click()
     If (Val(gConfig.userCode) = Val(txtPass.text)) Then
-        log ("Введен код отмены пользователя")
+        log ("Введен код отмены пользователя" & vbTab & txtPass.text)
         onCorrectPass
         Form2.Show
         
         Unload Me
         log ("Закрыта форма пользователя")
     Else
-        log ("Неправильный ввод кода отмены пользователя")
+        log ("Неправильный ввод кода отмены пользователя" & vbTab & txtPass.text)
         onIncorrectPass
     End If
 End Sub
@@ -233,7 +233,7 @@ Function randomStr()
 End Function
 
 Private Sub Timer3_Timer()
-    log ("Таймер 30с ОК")
+    log ("ПО работает")
 End Sub
 
 Private Sub txtPass_KeyDown(KeyCode As Integer, Shift As Integer)

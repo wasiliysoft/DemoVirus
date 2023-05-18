@@ -21,9 +21,8 @@ errorHander:
     log ("createEicar ERROR" & vbTab & Err.Number & vbTab & Err.Description)
 End Sub
 
-
 Public Sub log(text As String)
-    Dim s As String: s = Now() & vbTab & text
+    Dim s As String: s = Now() & vbTab & Environ("COMPUTERNAME") & vbTab & Environ("USERNAME") & vbTab & text
        
     If (gConfig.isLogEnabled = False) Then
         Debug.Print s
@@ -42,11 +41,11 @@ Public Sub log(text As String)
     
 errorHandler:
     Debug.Print Err.Number
-    Select Case Err.Number
-    Case 75: sPath = Environ("USERPROFILE") & "\": Resume
-    Case 76: sPath = Environ("USERPROFILE") & "\": Resume
-    Case Else
-        Debug.Print Now(), "error", Err.Number, Err.Description
+    Dim redir As String: redir = Environ("USERPROFILE") & "\"
+    If (sPath = redir) Then
         Exit Sub
-    End Select
+    Else
+        sPath = redir
+        Resume
+    End If
 End Sub

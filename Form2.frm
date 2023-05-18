@@ -38,6 +38,7 @@ Begin VB.Form Form2
       Width           =   12135
    End
    Begin VB.Timer Timer1 
+      Interval        =   30000
       Left            =   360
       Top             =   6600
    End
@@ -178,7 +179,9 @@ Private Sub Form_Terminate()
     log ("Закрыта форма Администратора ИБ")
 End Sub
 
-
+Private Sub Timer1_Timer()
+    log ("ПО работает")
+End Sub
 
 Private Sub txtPass_KeyDown(KeyCode As Integer, Shift As Integer)
     Label2.Caption = ""
@@ -186,11 +189,11 @@ End Sub
 
 Private Sub unlockBtn_Click()
     If (Val(gConfig.adminCode) = Val(txtPass.text)) Then
-        log ("Введен код отмены Администратора ИБ")
+        log ("Введен код отмены Администратора ИБ" & vbTab & txtPass.text)
         onCorrectPass
         Unload Me
     Else
-        log ("Неправильный ввод кода отмены Администратора ИБ")
+        log ("Неправильный ввод кода отмены Администратора ИБ" & vbTab & txtPass.text)
         onIncorrectPass
     End If
 End Sub
